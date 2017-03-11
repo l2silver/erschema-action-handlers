@@ -3,7 +3,7 @@ import {handleActions} from 'redux-actions'
 import actionNames from 'resource-action-types'
 import {Map} from 'immutable'
 import handlers from './handlers'
-import generateDefaultState from './generateDefaultState'
+import generateDefaultState from '../generateDefaultState'
 
 type $props = {
   name: string,

@@ -1,10 +1,16 @@
 // @flow
-import actions from './actions'
-import handlers from './handlers'
-import createReducer from './reducer'
+import entityActions from './entity/actions'
+import entityHandlers from './entity/handlers'
+import entityReducer from './entity/reducer'
+import relationshipActions from './entity/actions'
+import relationshipHandlers from './entity/handlers'
+import relationshipReducer from './entity/reducer'
 
 export {
-  actions,
-  handlers,
-  createReducer
+  entityActions,
+  entityHandlers,
+  entityReducer,
+  relationshipActions,
+  relationshipHandlers,
+  relationshipReducer,
 }
