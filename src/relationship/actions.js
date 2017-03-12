@@ -28,10 +28,16 @@ export default {
     }
     return createAction(actionNames.unlink(entityName))({relationship})
   },
-  indexLink(entityName: string, relationships: $relationships) {
+  indexRelationship(entityName: string, relationships: $relationships) {
     if (relationships instanceof Error) {
-      return createAction(actionNames.indexLink(entityName))(relationships)
+      return createAction(actionNames.indexRelationship(entityName))(relationships)
     }
-    return createAction(actionNames.indexLink(entityName))({relationships})
+    return createAction(actionNames.indexRelationship(entityName))({relationships})
+  },
+  createRelationship(entityName: string, relationships: $relationships) {
+    if (relationships instanceof Error) {
+      return createAction(actionNames.createRelationship(entityName))(relationships)
+    }
+    return createAction(actionNames.createRelationship(entityName))({relationships})
   },
 }
