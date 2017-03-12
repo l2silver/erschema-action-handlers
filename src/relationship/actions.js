@@ -11,7 +11,6 @@ type $relationship = {
 
 type $relationships = {
   name: string;
-  relationshipName: string;
   idValuePairs: Array<{id: $id, value: $id | $id[]}>;
 }
 
@@ -34,10 +33,10 @@ export default {
     }
     return createAction(actionNames.indexRelationship(entityName))({relationships})
   },
-  createRelationship(entityName: string, relationships: $relationships) {
-    if (relationships instanceof Error) {
-      return createAction(actionNames.createRelationship(entityName))(relationships)
+  createRelationship(entityName: string, relationship: $relationship) {
+    if (relationship instanceof Error) {
+      return createAction(actionNames.createRelationship(entityName))(relationship)
     }
-    return createAction(actionNames.createRelationship(entityName))({relationships})
+    return createAction(actionNames.createRelationship(entityName))({relationship})
   },
 }

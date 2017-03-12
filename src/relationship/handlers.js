@@ -61,9 +61,9 @@ export default {
       if (error) {
         return state
       }
-      const {relationshipName, idValuePairs} = payload.relationships
-      const relationshipType = mapOfRelationshipTypes[relationshipName]
-      return state.updateIn([relationshipName], relationships=>{
+      const {name, idValuePairs} = payload.relationships
+      const relationshipType = mapOfRelationshipTypes[name]
+      return state.updateIn([name], relationships=>{
         idValuePairs.reduce((finalResult, {id, value})=>{
           const finalValue = relationshipType === MANY ? new OrderedSet(value) : value
           finalResult.set(`id`, finalValue)
