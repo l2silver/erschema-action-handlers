@@ -4,7 +4,7 @@ import entityHandlers from './entity/handlers'
 import entityReducer from './entity/reducer'
 import relationshipActions from './relationship/actions'
 import relationshipHandlers from './relationship/handlers'
-import relationshipReducer from './relationship/reducer'
+import relationshipReducer, {relationshipPageReducer} from './relationship/reducer'
 
 export {
   entityActions,
@@ -13,4 +13,5 @@ export {
   relationshipActions,
   relationshipHandlers,
   relationshipReducer,
+  relationshipPageReducer,
 }
