@@ -27,13 +27,13 @@ export default {
     }
     return createAction(actionNames.unlink(entityName))({relationship})
   },
-  indexRelationship(entityName: string, relationships: $relationships) {
+  index(entityName: string, relationships: $relationships) {
     if (relationships instanceof Error) {
       return createAction(actionNames.indexRelationship(entityName))(relationships)
     }
     return createAction(actionNames.indexRelationship(entityName))({relationships})
   },
-  createRelationship(entityName: string, relationship: $relationship) {
+  create(entityName: string, relationship: $relationship) {
     if (relationship instanceof Error) {
       return createAction(actionNames.createRelationship(entityName))(relationship)
     }
