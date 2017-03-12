@@ -30,6 +30,7 @@
   "dependencies": {
     "erschema": "^1.0.5",
     "humps": "^2.0.0",
+    "immutable": "^3.8.1",
     "redux-actions": "^2.0.1",
     "resource-action-types": "^1.0.1"
   },
