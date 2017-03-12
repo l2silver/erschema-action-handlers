@@ -10,15 +10,15 @@ const {Record, Map, OrderedSet} = Immutable
 
 describe('entityReducer', function () {
   const name = 'users'
-  const relationshipDefinitions = [
+  const relationships = [
     {
-      relatedEntityName: 'people',
-      name: 'friends',
+      name: 'people',
+      relationshipName: 'friends',
       type: MANY
     },
     {
-      relatedEntityName: 'people',
-      name: 'friend',
+      name: 'people',
+      relationshipName: 'friend',
       type: ONE
     },
   ]
@@ -28,16 +28,16 @@ describe('entityReducer', function () {
   }
   it('returns default state', function () {
     const defaultState = getDefaultState()
-    const usersReducer = relationshipReducer({name, relationshipDefinitions})
+    const usersReducer = relationshipReducer({name, relationships})
     expect(usersReducer(undefined, {type: 1}).toObject()).toEqual(defaultState.toObject())
   })
   it('returns default state with config', function () {
     const defaultState = new (Record({friend: new Map(), friends: new Map(), otherData: new Map()}))()
-    const usersReducer = relationshipReducer({name, relationshipDefinitions, defaultStateConfig: {otherData: new Map()}})
+    const usersReducer = relationshipReducer({name, relationships, defaultStateConfig: {otherData: new Map()}})
     expect(usersReducer(undefined, {type: 1}).toObject()).toEqual(defaultState.toObject())
   })
   describe('actions', function () {
-    const usersReducer = relationshipReducer({name, relationshipDefinitions})
+    const usersReducer = relationshipReducer({name, relationships})
     const friendId = getId()
     it('creates Single', function () {
       const id = getId()  

@@ -7,10 +7,10 @@ import handlers from './handlers'
 import generateDefaultState from '../generateDefaultState'
 const {ONE, MANY} = relationshipTypes
 
-type $relationshipDefinition = {
+type $relationshipSchema = {
   name: string;
   type: number;
-  relatedEntityName: string;
+  relationshipName: string;
 }
 
 type $props = {
@@ -19,37 +19,37 @@ type $props = {
 	options?: Object,
   otherActions?: Object,
   locationPath?: string[],
-  relationshipDefinitions: $relationshipDefinition[]
+  relationships: $relationshipSchema[]
 };
 
-function getMapOfRelationshipDefaultValues(relationshipDefinitions){
-  return relationshipDefinitions.reduce((finalResult, {name}) => {
-    finalResult[name] = new Map()
+function getMapOfRelationshipDefaultValues(relationships){
+  return relationships.reduce((finalResult, {relationshipName}) => {
+    finalResult[relationshipName] = new Map()
     return finalResult
   }, {})
 }
 
-function getMapOfRelationshipTypes(relationshipDefinitions){
-  return relationshipDefinitions.reduce((finalResult, {name, type})=>{
-    finalResult[name] = type
+function getMapOfRelationshipTypes(relationships){
+  return relationships.reduce((finalResult, {relationshipName, type})=>{
+    finalResult[relationshipName] = type
     return finalResult
   }, {})
 }
 
-function getMapOfRelationships(relationshipDefinitions){
-  return relationshipDefinitions.reduce((finalResult: Object, {name, relatedEntityName})=>{
-    if(!finalResult[relatedEntityName]){
-      finalResult[relatedEntityName] = []
+function getMapOfRelationships(relationships){
+  return relationships.reduce((finalResult: Object, {name, relationshipName})=>{
+    if(!finalResult[name]){
+      finalResult[name] = []
     }
-    finalResult[relatedEntityName].push(name)
+    finalResult[name].push(relationshipName)
     return finalResult
   }, {})
 }
 
-export default function ({name, relationshipDefinitions, defaultStateConfig = {}, otherActions = {}}: $props) {
-  const mapOfRelationshipDefaultValues = getMapOfRelationshipDefaultValues(relationshipDefinitions)
-  const mapOfRelationshipTypes = getMapOfRelationshipTypes(relationshipDefinitions)
-  const mapOfRelationships = getMapOfRelationships(relationshipDefinitions)
+export default function ({name, relationships, defaultStateConfig = {}, otherActions = {}}: $props) {
+  const mapOfRelationshipDefaultValues = getMapOfRelationshipDefaultValues(relationships)
+  const mapOfRelationshipTypes = getMapOfRelationshipTypes(relationships)
+  const mapOfRelationships = getMapOfRelationships(relationships)
   const removeActions = Object.keys(mapOfRelationships).reduce((finalResult, relatedEntityName)=>{
     finalResult[actionNames.remove(relatedEntityName)] = handlers.remove(mapOfRelationshipTypes, mapOfRelationships, relatedEntityName)
     return finalResult
