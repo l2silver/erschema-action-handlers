@@ -1,6 +1,6 @@
 {
   "name": "erschema-action-handlers",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Actions and handlers for erschema operations",
   "main": "dist/index.js",
   "scripts": {
